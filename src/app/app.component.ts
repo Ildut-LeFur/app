@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { GarageService } from './garage.service';
+import { GarageService } from './core/services/garage.service';
 
 import { OnInit } from '@angular/core';
 
@@ -16,8 +16,6 @@ import { finalize } from "rxjs/operators";
 })
 export class AppComponent implements OnInit {
   title = 'garageApp';
-  cars: any;
-  greeting: any;
 
   constructor(private garageService: GarageService, private httpClient: HttpClient, private router: Router) {
     this.garageService.authenticate(undefined,undefined)
@@ -33,13 +31,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
       console.log("On init.....")
-      this.garageService.getCars().subscribe((datas) => {
-        this.cars = datas;
-        console.log(datas);
-      })
-      this.garageService.getGreeting().subscribe((datas) => {
-        this.greeting = datas;
-        console.log(datas);
-      })
   }
 }

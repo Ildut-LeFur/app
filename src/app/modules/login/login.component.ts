@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GarageService } from './garage.service';
+import { Component } from '@angular/core';
+import { GarageService } from '../../core/services/garage.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 

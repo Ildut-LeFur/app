@@ -6,15 +6,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { GarageService } from './garage.service';
-import { HomeComponent } from './home.component';
-import { LoginComponent } from './login.component';
+import { GarageService } from './core/services/garage.service';
+import { HomeComponent } from './modules/home/home.component';
+import { LoginComponent } from './modules/login/login.component';
 import { AppComponent } from './app.component';
+import { GarageComponent } from './modules/garage/garage.component';
+import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'garage', component: GarageComponent}
 ]
 
 @Injectable()
@@ -31,11 +34,13 @@ export class XhrInterceptor implements HttpInterceptor {
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    GarageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
+    MatTableModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule

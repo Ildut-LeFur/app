@@ -1,0 +1,9 @@
+<h1>Home page</h1>
+<div [hidden]="!authenticated()">
+	<a>The content is {{greeting?.content}}</a>
+	<div></div>
+	<a>The ID is {{greeting?.id}}</a>
+</div>
+<div [hidden]="authenticated()">
+	<a>Login to see your greeting</a>
+</div>
