@@ -47,7 +47,7 @@ export class GarageService {
   addCar(car: Car, callback: (any) | undefined) {
     const header= this.headers.set('Content-Type','application/json');
     const body = car;
-    this.httpClient.post(this.API_URL+this.ENDPOINT_CARS, body ,{headers:header}).subscribe({
+    this.httpClient.post<any>(this.API_URL+this.ENDPOINT_CARS, body ,{headers:header}).subscribe({
       next: (data: any) => {
           this.test = data;
           return callback && callback();
@@ -60,7 +60,7 @@ export class GarageService {
   }
 
   deleteCar(vin: string,  callback: (any) | undefined) {
-    this.httpClient.post(this.API_URL+this.ENDPOINT_CARS+"/"+vin,{headers:this.headers}).subscribe({
+    this.httpClient.delete<any>(this.API_URL+this.ENDPOINT_CARS+"/"+vin,{headers:this.headers}).subscribe({
       next: (data: any) => {
         this.test = data;
         return callback && callback();
