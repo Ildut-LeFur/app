@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   title = 'garageApp';
 
   constructor(private garageService: GarageService, private httpClient: HttpClient, private router: Router) {
-    this.garageService.authenticate(undefined,undefined)
+    // this.garageService.authenticate(undefined,undefined)
   }
 
   logout() {

@@ -11,7 +11,7 @@ export class HomeComponent {
   greeting: any;
 
   constructor(private garageService: GarageService, private http: HttpClient) {
-    this.garageService.getGreeting().subscribe(data => this.greeting = data);
+    this.garageService.authenticated?this.garageService.getGreeting().subscribe(data => this.greeting = data):{};
   }
 
   authenticated() { return this.garageService.authenticated;  }

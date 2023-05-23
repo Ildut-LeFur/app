@@ -28,7 +28,7 @@ export class GarageComponent {
   keys = Object.keys;
 
   constructor(private garageService: GarageService, private httpClient: HttpClient, private router: Router) {
-    this.load();
+    this.garageService.authenticated?this.load():{};
   }
 
   load() : void {
