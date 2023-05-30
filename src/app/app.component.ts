@@ -6,7 +6,6 @@ import { OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { finalize } from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -18,18 +17,22 @@ export class AppComponent implements OnInit {
   title = 'garageApp';
 
   constructor(private garageService: GarageService, private httpClient: HttpClient, private router: Router) {
-    // this.garageService.authenticate(undefined,undefined)
+    this.garageService;
   }
 
   logout() {
-    this.httpClient.post('logout',{}).pipe(
-      finalize(() => {
-      this.garageService.authenticated = false;
-      this.router.navigateByUrl('/login');
-    })).subscribe();
+    // this.httpClient.post('logout',{}).pipe(
+    //   finalize(() => {
+    //   this.garageService.authenticated = false;
+    //   this.router.navigateByUrl('/login');
+    // })).subscribe();
+    this.garageService.authenticated = false;
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit(): void {
       console.log("On init.....")
   }
+
+  authenticated() { return this.garageService.authenticated;  }
 }

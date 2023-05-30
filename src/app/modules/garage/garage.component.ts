@@ -44,5 +44,9 @@ export class GarageComponent {
   delete(){
     this.garageService.deleteCar(this.car.vin, () => this.load());
   }
+
+  edit(){
+    this.garageService.editCar(this.car, () => this.load());
+  }
 }
 

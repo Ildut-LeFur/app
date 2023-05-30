@@ -48,8 +48,7 @@ export class GarageService {
     const header= this.headers.set('Content-Type','application/json');
     const body = car;
     this.httpClient.post<any>(this.API_URL+this.ENDPOINT_CARS, body ,{headers:header}).subscribe({
-      next: (data: any) => {
-          this.test = data;
+      next: () => {
           return callback && callback();
       },
       error: (error: { message: any; }) => {
@@ -61,16 +60,30 @@ export class GarageService {
 
   deleteCar(vin: string,  callback: (any) | undefined) {
     this.httpClient.delete<any>(this.API_URL+this.ENDPOINT_CARS+"/"+vin,{headers:this.headers}).subscribe({
-      next: (data: any) => {
-        this.test = data;
+      next: () => {
         return callback && callback();
-    },
-    error: (error: { message: any; }) => {
-        this.errorMessage = error.message;
-        console.error('There was an error!', error);
-    }
-  })
+      },
+      error: (error: { message: any; }) => {
+          this.errorMessage = error.message;
+          console.error('There was an error!', error);
+      }
+    })
   }
+
+  editCar(car: Car,  callback: (any) | undefined) {
+    const header= this.headers.set('Content-Type','application/json');
+    const body = car;
+    this.httpClient.put<any>(this.API_URL+this.ENDPOINT_CARS+"/"+body.vin, body, {headers:header}).subscribe({
+      next: () => {
+        return callback && callback();
+      },
+      error: (error: { message: any; }) => {
+          this.errorMessage = error.message;
+          console.error('There was an error!', error);
+      }
+    })
+  }
+
   getGreeting() {
     return this.httpClient.get(this.API_URL+this.ENDPOINT_RESOURCE, {headers:this.headers})
   }

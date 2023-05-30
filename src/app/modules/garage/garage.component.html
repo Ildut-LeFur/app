@@ -38,7 +38,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
     <p >Add car form</p>
-    <form role="form" (submit)="add()">
+    <form role="form" >
         <div class="form-group">
             <label for="brand">Brand:</label> <input type="text"
                 class="form-control" id="brand" name="brand" [(ngModel)]="car.brand"/>
@@ -58,16 +58,19 @@
                 class="form-control" id="year" name="year" [(ngModel)]="car.year"/>
         </div>
         <div class="form-group">
-            <label for="vin">VIN:</label> <input type="text" maxlength="17" size="17"
+            <label for="vinAdd">VIN:</label> <input type="text" maxlength="17" size="17"
                 class="form-control" id="vinAdd" name="vinAdd" [(ngModel)]="car.vin"/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submitAdd" name="submitAdd" (click)="add()">Add</button>
+        <button type="submit" class="btn btn-primary" id="submitEdit" name="submitEdit" (click)="edit()">Edit</button>
     </form>
     <p >Delete car</p>
     <form role="form" (submit)="delete()">
-            <label for="vin">VIN:</label> <input type="text" maxlength="17" size="17"
-                class="form-control" id="vinDelete" name="vinDelete" [(ngModel)]="car.vin"/>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div>
+        <label for="vinDelete">VIN:</label> <input type="text" maxlength="17" size="17"
+            class="form-control" id="vinDelete" name="vinDelete" [(ngModel)]="car.vin"/>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submitDelete" name="submitDelete">Submit</button>
     </form>
 </div>
 <div [hidden]="authenticated()">
