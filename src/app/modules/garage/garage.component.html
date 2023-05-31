@@ -1,6 +1,6 @@
 <h1>Garage page</h1>
 <div [hidden]="!authenticated()">
-	<p >Garage stock:</p>
+	<p>Garage stock:</p>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
   
@@ -54,7 +54,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="year">Released year:</label> <input type="number" min="1950" max="2500" value="2000"
+            <label for="year">Released year:</label> <input type="number" min="1950" max="2500"
                 class="form-control" id="year" name="year" [(ngModel)]="car.year"/>
         </div>
         <div class="form-group">
@@ -74,5 +74,5 @@
     </form>
 </div>
 <div [hidden]="authenticated()">
-	<p>Login to see your garage</p>
+	<a>Login to see your garage</a>
 </div>

@@ -26,19 +26,25 @@ export class GarageService {
   authenticate(credentials: { username: any; password: any; } | undefined,callback: (any) | undefined) {
 
     this.headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.username +':' + credentials.password),'access-control-allow-origin':"*"
+      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password), 'access-control-allow-origin':"*"
     } : {'access-control-allow-origin':"*"});
-    this.httpClient.get(this.API_URL+'/user', {headers:this.headers}).subscribe(response => {
-    
-    if (response!=undefined) {
-      this.authenticated = true;
-    } else {
-      this.authenticated = false;
-    }
-    return callback && callback();
-  })
-
-}
+    this.httpClient.get(this.API_URL + '/user', {headers:this.headers}).subscribe({
+      next :(response) => {
+      this.test=response
+      console.log(this.test);
+      if (response!=undefined) {
+        this.authenticated = true;
+      } else {
+        this.authenticated = false;
+      }
+      return callback && callback();
+      },
+      error: (error: { message: any; }) => {
+        this.errorMessage = error.message;
+        console.error('There was an error!', error);
+      }
+    })
+  }
 
   getCars():Observable<Car[]> {
     return this.httpClient.get<Car[]>(this.API_URL+this.ENDPOINT_CARS, {headers:this.headers})
