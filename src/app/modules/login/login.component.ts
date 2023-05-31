@@ -10,11 +10,11 @@ export class LoginComponent {
 
   credentials = {username: '', password: ''};
   error: any;
-  constructor(private app: GarageService, private httpClient: HttpClient, private router: Router) {
+  constructor(private garageService: GarageService, private httpClient: HttpClient, private router: Router) {
   }
 
   login() {
-    this.app.authenticate(this.credentials,() => {
+    this.garageService.authenticate(this.credentials,() => {
       this.router.navigateByUrl('/');
     });
     return false;

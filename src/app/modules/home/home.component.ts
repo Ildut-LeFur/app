@@ -10,7 +10,7 @@ export class HomeComponent {
   title = 'Home';
   greeting: any;
 
-  constructor(private garageService: GarageService, private http: HttpClient) {
+  constructor(private garageService: GarageService, private httpClient: HttpClient) {
     this.garageService.authenticated?this.garageService.getGreeting().subscribe(data => this.greeting = data):{};
   }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Car } from '../../core/interfaces/car.interface';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from '../environment/environement';
 
 
 @Injectable({
@@ -10,10 +11,11 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class GarageService {
 
-  readonly API_URL = "http://localhost:8080"
+  readonly API_URL = environment.apiUrl;
 
-  readonly ENDPOINT_CARS= "/cars"
-  readonly ENDPOINT_RESOURCE= "/resource"
+  readonly ENDPOINT_CARS= "/cars";
+  readonly ENDPOINT_RESOURCE= "/resource";
+  readonly ENDPOINT_USER= "/user";
 
   authenticated = false;
   headers = new HttpHeaders;
@@ -28,7 +30,7 @@ export class GarageService {
     this.headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password), 'access-control-allow-origin':"*"
     } : {'access-control-allow-origin':"*"});
-    this.httpClient.get(this.API_URL + '/user', {headers:this.headers}).subscribe({
+    this.httpClient.get(this.API_URL + this.ENDPOINT_USER, {headers:this.headers}).subscribe({
       next :(response) => {
       if (response!=undefined) {
         this.authenticated = true;
