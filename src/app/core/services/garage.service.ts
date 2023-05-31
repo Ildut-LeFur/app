@@ -30,8 +30,6 @@ export class GarageService {
     } : {'access-control-allow-origin':"*"});
     this.httpClient.get(this.API_URL + '/user', {headers:this.headers}).subscribe({
       next :(response) => {
-      this.test=response
-      console.log(this.test);
       if (response!=undefined) {
         this.authenticated = true;
       } else {
